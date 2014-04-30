@@ -12,14 +12,13 @@
 */
 
 Route::get('/', function(){
-	
+		
+	# Consultas com o model product
+
 	# Criar Produto
 	// $produto = new Product;
 	// $produto->name = 'Barco';
 	// $produto->save();
-
-	# Consulta pelo Banco
-	// $produtos = DB::table('products')->get();
 	
 	# Todos os Produtos
 	// $produtos = Product::all();
@@ -27,9 +26,26 @@ Route::get('/', function(){
 	# Busca de Produto por ID
 	// $produtos = Product::find(1);
 
-	$produtos = DB::select('SELECT * FROM products WHERE id = ?', array(1));
+	// echo $produtos;
+
+
+
+	# Consultas com Queries
+
+	# Todos os produtos de uma tabela
+	// $produtos = DB::table('products')->get();
+
+	# Inner join
+	// $produtos = DB::table('products')
+	// 		->join('product_models', 'products.id','=' ,'product_models.product_id')
+	// 		->get();
+	
+	# Left join
+	$produtos = DB::table('products')
+			->leftjoin('product_models', 'products.id','=' ,'product_models.product_id')
+			->get();
 
 	// Echo 
-	echo $produtos;
+	print_r($produtos);
 
 });
