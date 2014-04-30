@@ -11,7 +11,25 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+Route::get('/', function(){
+	
+	# Criar Produto
+	// $produto = new Product;
+	// $produto->name = 'Barco';
+	// $produto->save();
+
+	# Consulta pelo Banco
+	// $produtos = DB::table('products')->get();
+	
+	# Todos os Produtos
+	// $produtos = Product::all();
+
+	# Busca de Produto por ID
+	// $produtos = Product::find(1);
+
+	$produtos = DB::select('SELECT * FROM products WHERE id = ?', array(1));
+
+	// Echo 
+	echo $produtos;
+
 });
